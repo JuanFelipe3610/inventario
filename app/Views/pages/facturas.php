@@ -1,7 +1,3 @@
-<?php 
-require_once('../config.php');
-require_once('../header.php');
-?>
 <h3 class="page-header"><i class="fa fa-file-text-o"></i>Facturas</h3>
 <div class="box-basic-button-flex">
   <button data-placement="top" data-toggle="modal" <?php //data-target="#addFactura" ?> class="basic-button green-button tooltips" type="button" data-original-title="Añadir" id="crearFactura"><span class="fa fa-plus-circle"></span></button>
@@ -154,4 +150,3 @@ require_once('../header.php');
   </div>
 </div>
 <iframe src="" frameborder="0" id="pdf"></iframe>
-<?php require_once('../footer.php'); ?>

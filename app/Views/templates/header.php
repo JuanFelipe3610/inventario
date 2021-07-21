@@ -57,13 +57,14 @@
                       <p></p>
                       <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
                     </div>
-                </div>                                 
+                </div>  
+                <?=$menu->showMenu('sidebar-menu')?>                               
             </section>
             <!--div class="lock-menu fa fa-unlock"></div-->
         </aside>
         <section class="main-content">
             <ul class="window">
-                <li class="active" data-id="1"> <i class="icon_close"></i></li>
+                <li class="active" data-id="1"><?=$winname?> <i class="icon_close"></i></li>
             </ul>
             <ol class="breadcrumb">
                 <li><i class="icon_house_alt"></i>Inicio</li>

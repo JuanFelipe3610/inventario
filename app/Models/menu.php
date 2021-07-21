@@ -1,8 +1,8 @@
 <?php 
-namespace model;
-use model\Connection;
+namespace App\Models;
+use CodeIgniter\Model;
 
-class Menu extends Connection {
+class Menu extends Model {
     public function __construct() {
         parent::__construct();
     } 
@@ -47,29 +47,30 @@ class Menu extends Connection {
     }
 
     public function MenuLeft () {
+        //$db = \Config\Database::connect();
         $data = array();
         $query = "SELECT * FROM menu WHERE position = 2 ORDER BY orden ASC";
-        $stmt = $this->conn->query($query);
-        $stmt->execute();
-        foreach($stmt->fetchAll() as $row) {
-            $query2 = "SELECT * FROM sub_menu WHERE id_menu = $row[id_menu]";
-            $stmt2 = $this->conn->query($query2);
-            $stmt2->execute();
+        $stmt = $this->query($query);
+        $stmt = $stmt->getResult();
+        foreach($stmt as $row) {
+            $query2 = "SELECT * FROM sub_menu WHERE id_menu = $row->id_menu";
+            $stmt2 = $this->query($query2);
+            $stmt2 = $stmt2->getResult();
             $submenu = array();
-            foreach($stmt2->fetchAll() as $row2){
+            foreach($stmt2 as $row2){
                 $submenu[] = (object)array(
-                    'ID'     => $row2['id_sub_menu'],
-                    'NOMBRE' => $row2['nombre'],
-                    'URL'    => $row2['url'],
-                    'ICON'	 => $row2['icon']
+                    'ID'     => $row2->id_sub_menu,
+                    'NOMBRE' => $row2->nombre,
+                    'URL'    => $row2->url,
+                    'ICON'	 => $row2->icon
                 );
             }
 
             $data[] = (object)array(
-                'ID'      => $row['id_menu'],
-                'NOMBRE'  => $row['nombre'],
-                'URL'	  => $row['url'],
-                'ICON'	  => $row['icon'],
+                'ID'      => $row->id_menu,
+                'NOMBRE'  => $row->nombre,
+                'URL'	  => $row->url,
+                'ICON'	  => $row->icon,
                 'SUBMENU' => $submenu
             );
         }

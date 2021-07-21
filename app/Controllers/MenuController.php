@@ -1,6 +1,6 @@
 <?php 
-    namespace controller;
-    use model\Menu;
+    namespace App\Controllers;
+    use App\Models\Menu;
     use \DOMDocument;
 
     class MenuController extends Menu{
