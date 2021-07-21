@@ -7,13 +7,7 @@
     <script src="/resources/js/scripts.js"></script>
     <script src="/resources/js/bootstrap-table.min.js"></script>
     <script src="/resources/js/bootstrap-table-group-by.js"></script>
-    <!--?php 
-    if (URL != '/') {
-        if (file_exists(DIRNAME.'/js/app/'.$uri.'.js')) {
-            echo '<script src="'.ROOT_SERVER.'/js/app/'.$uri.'.js" ></script>';
-        }        
-    }
-    ?-->
+    <?=$script?>
     <em>&copy; 2021</em>
 </body>
 </html>

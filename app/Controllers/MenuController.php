@@ -1,9 +1,9 @@
 <?php 
     namespace App\Controllers;
-    use App\Models\Menu;
+    use App\Models\MenuModel;
     use \DOMDocument;
 
-    class MenuController extends Menu{
+    class MenuController extends MenuModel{
         private $menu;
         private $labels = array();
         private $data;

@@ -1,8 +1,8 @@
 <?php 
-namespace model;
-use model\Connection;
+namespace App\Models;
+use CodeIgniter\Model;
 
-class Factura extends Connection {
+class FacturasModel extends Model {
     public function __construct() {
         parent::__construct();
     } 
@@ -29,28 +29,24 @@ class Factura extends Connection {
         f.id_cliente = c.id_cliente AND
         v.id_vendedor = c.id_vendedor AND
         f.estado = $value->estado
-        ORDER   BY f.fecha DESC";
-        $result = $this->conn->query($query);
-        while($row = $result->fetch()) { 
-            $date = date_create($row['fecha']);
+        ORDER BY f.fecha DESC";
+        $result = $this->query($query);
+        foreach($result->getResult() as $row) { 
+            $date = date_create($row->fecha);
             $data[] = array(
-                'ID'        => $row['id_factura'],
-                'CODIGO'    => $row['codigo_cliente'],
-                'NOMBRE'    => $row['nombre'],
-                'NEGOCIO'   => $row['negocio'],
-                'VENDEDOR'  => $row['vendedor'],
-                'DIRECCION' => $row['direccion'],
-                'BARRIO'    => $row['barrio'],
+                'ID'        => $row->id_factura,
+                'CODIGO'    => $row->codigo_cliente,
+                'NOMBRE'    => $row->nombre,
+                'NEGOCIO'   => $row->negocio,
+                'VENDEDOR'  => $row->vendedor,
+                'DIRECCION' => $row->direccion,
+                'BARRIO'    => $row->barrio,
                 'FECHA'     => date_format($date, "Y/m/d"),
-                'ACCTION'   => $row['id_factura']
+                'ACCTION'   => $row->id_factura
             );
         }
 
-        if(isset($_GET["callback"])){   
-            echo $_GET["callback"]."(" . json_encode($data) . ");";  
-        }else{
-            return json_encode($query);
-        }
+        return json_encode($data);  
     }
 
     public function listProductsFact ($values) {

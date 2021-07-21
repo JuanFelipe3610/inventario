@@ -2,7 +2,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class Menu extends Model {
+class MenuModel extends Model {
     public function __construct() {
         parent::__construct();
     } 
@@ -47,7 +47,6 @@ class Menu extends Model {
     }
 
     public function MenuLeft () {
-        //$db = \Config\Database::connect();
         $data = array();
         $query = "SELECT * FROM menu WHERE position = 2 ORDER BY orden ASC";
         $stmt = $this->query($query);

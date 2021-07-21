@@ -46,4 +46,10 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
 	}
+
+	public function post($name){
+		if (isset($_POST[$name])) {
+			return $_POST[$name];
+		}
+	}
 }

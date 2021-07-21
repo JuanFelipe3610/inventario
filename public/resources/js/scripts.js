@@ -82,9 +82,8 @@ $(function() {
 });
 
 function URI() {
-    var DIR_PATH = location.protocol + '//' + location.host + location.pathname;
-    url = DIR_PATH.substr(0, DIR_PATH.indexOf('/app/'));
-    return url;
+    var DIR_PATH = location.protocol + '//' + location.host;
+    return DIR_PATH;
 }
 
 function dataTime() {
@@ -134,7 +133,7 @@ function Ajax(URL, ACTION, VALUES, FN) {
             action: ACTION,
             values: VALUES
         },
-        dataType: "jsonp",
+		dataType: "JSON",
         jsonp: "callback",
         jsonpCallback: "JasonpCallback",
         success: function(response) {
@@ -367,3 +366,61 @@ $(document).ready(function() {
         }
     })
 });
+
+class Buttons{
+    constructor(fristButton = Object, buttons = Array){
+        this.fristButton = fristButton
+        this.buttons = buttons
+    }
+
+    get getButons(){
+        let elment = this.createButtons()
+        return elment.outerHTML
+    }
+
+    createNode(node, attributes){
+        const el = document.createElement(node);
+        for(let key in attributes){
+            el.setAttribute(key, attributes[key]);
+        }
+        return el;
+    }
+
+    createIcon(icon){
+        const i = document.createElement('i')
+        i.setAttribute('class', icon)
+        return i
+    }
+
+    createButtons(){
+        // Elementos a crear
+        let mainCont = this.createNode('div', {'class': 'acctions-buttons'})
+        let fristCont = this.createNode('div', {'class': 'frist-buttons'})
+        let secondCont = this.createNode('div', {'class': 'second-buttons'})
+        let fristButton = this.createNode('button', {
+            'class': this.fristButton.class, 
+            'id': this.fristButton.id, 
+            'data-id': this.fristButton.dataId
+        })
+        let secondButton = this.createNode('button', {'class': 'fa fa-caret-down btn-collapse' })
+        
+        // Se llenan los datos 
+        for(let key in this.buttons){
+            let button = this.createNode('button', {
+                'class': this.buttons[key].class, 
+                'id': this.buttons[key].id, 
+                'data-id': this.buttons[key].dataId
+            })
+            button.append(this.createIcon(this.buttons[key].icon), this.buttons[key].text)
+            secondCont.append(button)
+        }
+        fristButton.append(this.createIcon(this.fristButton.icon), this.fristButton.text)
+
+
+        // Se organizan los elementos
+        mainCont.append(fristCont, secondCont)
+        fristCont.append(fristButton, secondButton)
+        
+        return mainCont
+    }
+}

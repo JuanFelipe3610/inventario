@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 
-class Pages extends Controller
+class PagesController extends Controller
 {
 	private $menu;
 
@@ -25,6 +25,7 @@ class Pages extends Controller
 		$data['title'] = ucfirst('Fast Inventory'); // Capitalize the first letter
 		$data['menu'] = $this->menu;
 		$data['winname'] = $page;
+		$data['script'] = '';
 		echo view('templates/header', $data);
 		echo view('pages/'.$page, $data);
 		echo view('templates/footer', $data);
@@ -41,6 +42,7 @@ class Pages extends Controller
 		$data['title'] = ucfirst('Fast Inventory'); // Capitalize the first letter
 		$data['menu'] = $this->menu;
 		$data['winname'] = ucfirst($page);
+		$data['script'] = '<script src="/resources/js/js/'.$page.'.js" ></script>';
 		echo view('templates/header', $data);
 		echo view('pages/'.$page, $data);
 		echo view('templates/footer', $data);

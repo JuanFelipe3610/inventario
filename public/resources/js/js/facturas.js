@@ -1,65 +1,9 @@
 var DATA = [];
-var URL = null;
+var URL = URI()+'/FacturasController/';
 var ACTION = null;
-class Buttons{
-    constructor(fristButton = Object, buttons = Array){
-        this.fristButton = fristButton
-        this.buttons = buttons
-    }
-
-    get getButons(){
-        let elment = this.createButtons()
-        return elment.outerHTML
-    }
-
-    createNode(node, attributes){
-        const el = document.createElement(node);
-        for(let key in attributes){
-            el.setAttribute(key, attributes[key]);
-        }
-        return el;
-    }
-
-    createIcon(icon){
-        const i = document.createElement('i')
-        i.setAttribute('class', icon)
-        return i
-    }
-
-    createButtons(){
-        // Elementos a crear
-        let mainCont = this.createNode('div', {'class': 'acctions-buttons'})
-        let fristCont = this.createNode('div', {'class': 'frist-buttons'})
-        let secondCont = this.createNode('div', {'class': 'second-buttons'})
-        let fristButton = this.createNode('button', {
-            'class': this.fristButton.class, 
-            'id': this.fristButton.id, 
-            'data-id': this.fristButton.dataId
-        })
-        let secondButton = this.createNode('button', {'class': 'fa fa-caret-down btn-collapse' })
-        
-        // Se llenan los datos 
-        for(let key in this.buttons){
-            let button = this.createNode('button', {
-                'class': this.buttons[key].class, 
-                'id': this.buttons[key].id, 
-                'data-id': this.buttons[key].dataId
-            })
-            button.append(this.createIcon(this.buttons[key].icon), this.buttons[key].text)
-            secondCont.append(button)
-        }
-        fristButton.append(this.createIcon(this.fristButton.icon), this.fristButton.text)
-
-
-        // Se organizan los elementos
-        mainCont.append(fristCont, secondCont)
-        fristCont.append(fristButton, secondButton)
-        
-        return mainCont
-    }
-}
 
 $(document).ready(function () {
+    facturas();
     printPdf = function (url) {
         var iframe = this._printIframe;
         if (!this._printIframe) {
@@ -134,7 +78,7 @@ $(document).ready(function () {
     }
 
     function facturas() {
-        URL = URI() + "/controller/facturas.php";
+        URL = URL+"ListFacturas";
         ACTION = 3;
         ARRAY = [];
         ARRAY.push({
@@ -215,7 +159,7 @@ $(document).ready(function () {
     }
 
     $(document).on('mousedown', function(e) {
-        //console.log(e.which)
+        console.log(e.which)
         switch (e.which) {
             case 0:
                 rightClick(e)
@@ -265,7 +209,7 @@ $(document).ready(function () {
                 }
                 $('body').append(content)
             }
-            $('#contexmenu').fadeOut(100,function(){
+            $('#contexmenu').fadeOut(100, function(){
                 $('#contexmenu').css({
                     'top': element.clientY,
                     'left': element.clientX 
@@ -276,9 +220,9 @@ $(document).ready(function () {
         }else{
             $('#contexmenu').slideUp(100)
         }
-    }
 
-    facturas();
+
+    }
 
     $(document).on('click', '#crearFactura', function () {
         listProductsFact();
@@ -658,7 +602,7 @@ $(document).ready(function () {
     });
 
     $('#facturasEliminadas').on('click', function () {
-        URL = URI() + "/controller/facturas.php";
+        URL = URL + "listFacturas";
         ACTION = 3;
         ARRAY = [];
         ARRAY.push({

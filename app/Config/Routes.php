@@ -18,24 +18,22 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-//$routes->setDefaultController('Home');
-//$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
+$routes->setDefaultController('PagesController');
+$routes->setDefaultMethod('index');
+$routes->setTranslateURIDashes(true);
 $routes->set404Override();
-$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
  * Route Definitions
  * --------------------------------------------------------------------
  */
-
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Pages::index');
+//$routes->get('/', 'PagesController::index');
 //$routes->get('(:any)', 'Pages::view/$1');
-
-$routes->get('facturas', 'Facturas');
+$routes->get('facturas', 'FacturasController');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

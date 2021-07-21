@@ -1289,7 +1289,6 @@ th {
 }
 
 .table thead>tr>th,.table tbody>tr>th,.table tfoot>tr>th,.table thead>tr>td,.table tbody>tr>td,.table tfoot>tr>td {
-    /*padding: 10px;*/
     line-height: 1.428571429;
     vertical-align: top;
     /*border-top: 1px solid #ddd*/
@@ -1418,6 +1417,10 @@ table td[class*="col-"],table th[class*="col-"] {
 .table {
     /*border-top: 1px solid #ddd;*/
     border-collapse: collapse;
+}
+
+.fixed-table-container{
+    padding: 5px;
 }
 
 .pagination {
