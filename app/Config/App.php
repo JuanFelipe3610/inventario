@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'https://inventario.test/';
+	public $baseURL = 'http://fast.test';
 
 	/**
 	 * --------------------------------------------------------------------------

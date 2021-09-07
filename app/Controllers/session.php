@@ -56,16 +56,16 @@ class session {
     }
     
     public static function verifyActivity() {
-        if (URL != 'login') {
+        /*if (URL != 'login') {
             self::expired();
-        }
+        }*/
     } 
     
     public static function verifyAccess($dir){
-        if (isset($_SESSION["user"])){ 
+        /*if (isset($_SESSION["user"])){ 
             if (!$found && $file !== 'index') {
                header('Location: dashboard');
             } 
-        }
+        }*/
     } 
 }

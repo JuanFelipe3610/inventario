@@ -124,15 +124,12 @@ function number_format(amount, decimals) {
     return amount_parts.join('.');
 }
 
-function Ajax(URL, ACTION, VALUES, FN) {
+function ajax(URL, DATA, FN) {
     $.ajax({
         type: "POST",
         url: URL,
         async: false,
-        data: {
-            action: ACTION,
-            values: VALUES
-        },
+        data: DATA,
 		dataType: "JSON",
         jsonp: "callback",
         jsonpCallback: "JasonpCallback",

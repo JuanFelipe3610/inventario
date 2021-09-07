@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 //$routes->get('/', 'PagesController::index');
 //$routes->get('(:any)', 'Pages::view/$1');
-$routes->get('facturas', 'FacturasController');
+$routes->get('dashboard/facturas', 'FacturasController');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

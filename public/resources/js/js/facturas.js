@@ -78,14 +78,7 @@ $(document).ready(function () {
     }
 
     function facturas() {
-        URL = URL+"ListFacturas";
-        ACTION = 3;
-        ARRAY = [];
-        ARRAY.push({
-            estado: 1
-        });
-        VALUES = JSON.stringify(ARRAY);
-        Ajax(URL, ACTION, VALUES, function (response) {
+        ajax(`${URL}listFacturas`, { estado: 1}, function (response) {
             $("#facturas").bootstrapTable({
                 data: response,
                 striped: true,
@@ -602,14 +595,7 @@ $(document).ready(function () {
     });
 
     $('#facturasEliminadas').on('click', function () {
-        URL = URL + "listFacturas";
-        ACTION = 3;
-        ARRAY = [];
-        ARRAY.push({
-            estado: 0
-        });
-        VALUES = JSON.stringify(ARRAY);
-        Ajax(URL, ACTION, VALUES, function (response) {
+        ajax(`${URL}listFacturas`, {'estado': 0}, function (response) {
             $("#FacturasEliminadas").bootstrapTable({
                 data: response,
                 striped: true,
@@ -618,6 +604,9 @@ $(document).ready(function () {
                 filterControl: true,
                 showExport: false,
                 exportTypes: ["excel"],
+                formatLoadingMessage: function () {
+                    return '<span class="glyphicon glyphicon glyphicon-repeat glyphicon-animate"></span>';
+                },
                 columns: [
                     [{
                         field: "ID",
