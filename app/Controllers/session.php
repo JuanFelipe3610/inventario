@@ -1,7 +1,7 @@
 <?php
 namespace controller;
 
-class session {
+class Session {
     private static $instance;
     private static $inactive;
     private static $sessionTTL;

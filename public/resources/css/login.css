@@ -174,17 +174,9 @@ body{
     100%{transform: rotate(360deg);}
 }
 
-.login > h2{
-    color: #4a99f3;
-    text-align: center;
-    display: flex;
-    justify-content: center; 
-    padding-top: 15px;
-}
-
-.login > h2 img{
-    width: 150px;
-    height: 150px;
+.login > img{
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     /*border: 1px solid #f1f1f1;*/
 }

@@ -31,9 +31,11 @@ $routes->setAutoRoute(true);
  */
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-//$routes->get('/', 'PagesController::index');
+$routes->get('/', 'PagesController::index');
 //$routes->get('(:any)', 'Pages::view/$1');
-$routes->get('dashboard/facturas', 'FacturasController');
+$routes->get('dashboard', 'DashboardController');
+$routes->get('facturas', 'FacturasController');
+$routes->get('login', 'LoginController');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

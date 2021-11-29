@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-table-group-by.css');?>">
     <script src="<?=base_url('/resources/lib/swalert/sweetalert.js');?>"></script>
     <link rel="stylesheet" href="<?=base_url('/resources/css/style.css');?>">
-    <title>Fast Inventory</title>
+    <title><?= esc($title) ?></title>
 </head>
 <body class="sidebar-mini">
     <div class="wrapper">
@@ -26,7 +26,7 @@
                     <hr class="stik2">
                     <hr class="stik3">
                 </div>
-                <a href="/"><h2><?= esc($title) ?></h2></a>
+                <a href="/"><h2>Fast Inventory</h2></a>
             </div>
             <!--nav class="nav">            
             </nav-->
@@ -37,10 +37,10 @@
                         <img src="<?=base_url('/resources/img/logo.jpg');?>" alt="">
                         <div>
                             <small></small><br>
-                            <small><i class="fa fa-user"></i></small>  
+                            <small><i class="fa fa-user" aria-hidden="true"></i></small>  
                         </div>
                     </div>
-                    <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </div>
                 <div class="user-menu closeMenu">
                 </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="pull-left info">
                       <p></p>
-                      <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
+                      <a href="#"><i class="fa fa-circle text-success" aria-hidden="true"></i> En linea</a>
                     </div>
                 </div>  
                 <?=$menu->showMenu('sidebar-menu')?>                               
@@ -64,12 +64,12 @@
         </aside>
         <section class="main-content">
             <ul class="window">
-                <li class="active" data-id="1"><?=$winname?> <i class="icon_close"></i></li>
+                <li class="active" data-id="1"><?=$winname?> <i class="icon_close" aria-hidden="true"></i></li>
             </ul>
             <ol class="breadcrumb">
-                <li><i class="icon_house_alt"></i>Inicio</li>
-                <li></li>
+                <li><i class="icon_house_alt" aria-hidden="true"></i>Inicio</li>
+                <li><?=$winname?></li>
             </ol>
             <div class="content active" data-id="1">
                 <div class="sidebar-hover-label"><a href=""></a></div>                        
-                <!--div id="cssload-box"><div class="cssload-box-loading"></div></div-->
+                <!--div id="cssload-box"><div class="cssload-box-loading"></div></!--div>

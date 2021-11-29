@@ -1,69 +1,55 @@
 <?php
 
 namespace App\Controllers;
-
-use CodeIgniter\Controller;
-use controller\session;
-
-class PagesController extends Controller 
+class PagesController extends BaseController 
 {
 	private $menu;
 
 	public function __construct()
 	{
-		$menu = new MenuController('left');
-		//session::init();
-
-		$menu->GenerateMenu();
-		$this->menu = $menu;
+		$this->menu = new MenuController('left');
+		$this->menu->GenerateMenu();				
 	}
 
 	public function index()
 	{
-		if (isset($_SESSION['session']) && $_SESSION['session'] == 1) {
-			$page = 'dashboard';
-			if (!is_file(APPPATH . '/Views/pages/' . $page . '.php')) {
-				// Whoops, we don't have a page for that!
-				throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
-			}
+		$this->view();
+	}
 
-			$data['title'] = ucfirst('Fast Inventory'); // Capitalize the first letter
-			$data['menu'] = $this->menu;
-			$data['winname'] = $page;
-			$data['script'] = '';
-			echo view('templates/header', $data);
-			echo view('pages/' . $page, $data);
-			echo view('templates/footer', $data);
+	public function view($page = 'dashboard', $controllerData = array(), $pageData = [])
+	{
+		if (isset($this->session->logged_in) && $this->session->logged_in == 1) {
+			if ($page == 'login') {
+				header('Location: dashboard');
+			}	
+			if(empty($pageData)){
+				$pageData = [
+					'name' => $page,
+					'Header' => 'header',
+					'Footer' => 'footer'
+				];
+			}			
+			$this->loadPage($pageData, '<script src="/resources/js/js/' . $page . '.js" ></script>', $controllerData);
+		}else if($page != 'login'){		
+			header('Location: login');
 		}else{
-			$page = 'index';
-			if (!is_file(APPPATH . '/Views/pages/' . $page . '.php')) {
-				// Whoops, we don't have a page for that!
-				throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
-			}
-
-			$data['title'] = ucfirst('Fast Inventory'); // Capitalize the first letter
-			$data['menu'] = $this->menu;
-			$data['winname'] = $page;
-			$data['script'] = '';
-			echo view('templates/index_header', $data);
-			echo view('pages/' . $page, $data);
-			echo view('templates/index_footer', $data);
+			$this->loadPage($pageData, '<script src="/resources/js/js/' . $page . '.js" ></script>', $controllerData);
 		}
 	}
 
-	public function view($page = 'dashboard')
-	{
-		if (!is_file(APPPATH . '/Views/pages/' . $page . '.php')) {
+	private function loadPage($pageData, $script = "", $controllerData = []){
+		if (!is_file(APPPATH . '/Views/pages/' . $pageData['name'] . '.php')) {
 			// Whoops, we don't have a page for that!
-			throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
+			throw new \CodeIgniter\Exceptions\PageNotFoundException($pageData['name']);
 		}
 
-		$data['title'] = ucfirst('Fast Inventory'); // Capitalize the first letter
+		$data['title'] = ucfirst('Fast Inventory | '.$pageData['name']); // Capitalize the first letter
 		$data['menu'] = $this->menu;
-		$data['winname'] = ucfirst($page);
-		$data['script'] = '<script src="/resources/js/js/' . $page . '.js" ></script>';
-		echo view('templates/header', $data);
-		echo view('pages/' . $page, $data);
-		echo view('templates/footer', $data);
+		$data['winname'] = $pageData['name'];
+		$data['script'] = $script;
+		$data['controllerData'] = $controllerData;
+		echo view('templates/'. $pageData['Header'], $data);
+		echo view('pages/' . $pageData['name'], $data);
+		echo view('templates/'. $pageData['Footer'], $data);
 	}
 }

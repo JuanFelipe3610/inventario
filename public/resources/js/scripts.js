@@ -1,10 +1,10 @@
-/*window.addEventListener('load', () => {
+window.addEventListener('load', () => {
     const loader = document.getElementById('cssload-box');
     setTimeout( function() {
         loader.style.opacity = 0;
         loader.style.visibility = "hidden";
     }, 1500)
-});*/
+});
 
 $(window).blur(function() {
     $('#contexmenu').slideUp(100)
@@ -163,8 +163,7 @@ function createTable(containerPagination, containerData, size, dataSources) {
 var mouseStop = null;
 var Time = 1800000; //tiempo en milisegundos que espera para efectuarse la funcion
 $(document).on('mousemove', function() {
-    //console.log(URI())
-    if (URI() + "/app/login" != location.href) {
+    if (URI() + "/login" != location.href) {
         clearTimeout(mouseStop);
         mouseStop = setTimeout(Myfunction, Time);
     }
@@ -177,7 +176,7 @@ function Myfunction() {
         icon: "warning",
         dangerMode: true,
     }).then(() => {
-        window.location.href = URI() + "/app/logout";
+        window.location.href = URI() + "/logout";
     }); //aqui efectua la funcion cuando dejas de mover el raton
 }
 
@@ -213,33 +212,6 @@ $(document).ready(function() {
         } else {
             $('.lock-menu').removeClass('fa-lock')
             $('.lock-menu').addClass('fa-unlock')
-        }
-    });
-
-    $(document).keypress('.input-login', function(e) {
-        var keycode = (e.keyCode ? e.keyCode : e.which);
-        if (keycode == '13') {
-            $("#btn-login").addClass('btn-login-load');
-            if ($('#user').val() == '' || $('#pass').val() == '') {
-                $("#btn-login").removeClass('btn-login-load');
-                $('#myformlogin').submit()
-            } else {
-                setTimeout(function() {
-                    $('#myformlogin').submit()
-                }, 1000)
-            }
-        }
-    });
-
-    $(document).on("click", "#btn-login", function() {
-        $(this).addClass('btn-login-load');
-        if ($('#user').val() == '' || $('#pass').val() == '') {
-            $(this).removeClass('btn-login-load');
-            $('#myformlogin').submit()
-        } else {
-            setTimeout(function() {
-                $('#myformlogin').submit()
-            }, 1000)
         }
     });
 

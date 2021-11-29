@@ -1,18 +1,10 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\FacturasModel;
 
-class FacturasController extends PagesController
+class DashboardController extends PagesController
 {
-    private $FacturasModel;
-
-	public function __construct(){
-        parent::__construct();
-        $this->FacturasModel = new FacturasModel();
-    }
-
-    public function index($page = 'facturas')
+    public function index($page = 'dashboard')
 	{ 
         $this->view($page);
 	}

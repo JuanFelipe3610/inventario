@@ -12,18 +12,6 @@
     <table id="facturas" data-sort-order="asc" data-show-refresh="false" data-show-toggle="false" data-show-columns="false" data-search="true" data-pagination="true" data-page-list=""></table>   
   </div>
 </div>
-<!--div class="acctions-buttons">
-  <div class="frist-buttons">
-    <button class="orange-button"><span class="icon_pencil"></span>Editar</button>
-    <button class="fa fa-caret-down btn-collapse"></button>
-  </div>
-  <div class="second-buttons">
-    <button><span class="icon_printer"></span>Imprimir</button>
-    <button class="red-button"><span class="fa fa-file-pdf-o"></span>PDF</button>
-    <button class="green-button"><span class="fa fa-file-excel-o"></span>Ecxel</button>
-    <button class="red-button"><span class="fa fa-times-circle"></span>Eliminar</button>
-  </div>
-</div-->
 <!-- Modal Añadir -->
 <div class="modal fade" id="addFactura" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-large" role="document">
