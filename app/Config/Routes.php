@@ -36,6 +36,7 @@ $routes->get('/', 'PagesController::index');
 $routes->get('dashboard', 'DashboardController');
 $routes->get('facturas', 'FacturasController');
 $routes->get('login', 'LoginController');
+$routes->get('logout', 'LoginController::logOut');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

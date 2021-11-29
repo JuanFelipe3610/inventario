@@ -24,11 +24,17 @@ const login = () =>{
         $("#btn-login").removeClass('btn-login-load');
     } else {
         $("#btn-login").addClass('btn-login-load');
-        setTimeout(function() {
-            ajax(`${URL}login`, { user, pass}, function (response) {
+        ajax(`${URL}login`, { user, pass}, function (response) {
+            setTimeout(function() {
+                if (response.status == 0) {
+                    $("#error").text('')
+                    window.location.href = URI() + "/";
+                } else {
+                    $("#error").text(response.mensaje)
+                }
                 $("#btn-login").removeClass('btn-login-load');
-                window.location.href = URI() + "/";
-            })
-        }, 100)
+            }, 1500);
+        })
+        
     }
 }
