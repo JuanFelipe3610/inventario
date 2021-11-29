@@ -7,8 +7,7 @@ class PagesController extends BaseController
 
 	public function __construct()
 	{
-		$this->menu = new MenuController('left');
-		$this->menu->GenerateMenu();				
+		$this->menu = new MenuController();				
 	}
 
 	public function index()
@@ -28,12 +27,13 @@ class PagesController extends BaseController
 					'Header' => 'header',
 					'Footer' => 'footer'
 				];
-			}			
-			$this->loadPage($pageData, '<script src="/resources/js/js/' . $page . '.js" ></script>', $controllerData);
+			}
+			$controllerData['userData'] = (object)['username' => $this->session->username]; 
+			$this->loadPage($pageData, '<script src="/resources/js/common/' . $page . '.js" ></script>', $controllerData);
 		}else if($page != 'login'){		
 			header('Location: login');
 		}else{
-			$this->loadPage($pageData, '<script src="/resources/js/js/' . $page . '.js" ></script>', $controllerData);
+			$this->loadPage($pageData, '<script src="/resources/js/common/' . $page . '.js" ></script>', $controllerData);
 		}
 	}
 

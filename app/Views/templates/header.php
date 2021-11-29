@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-theme.css');?>"-->
     <link rel="stylesheet" href="<?=base_url('/resources/css/elegant-icons-style.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/css/font-awesome.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/css/font-awesome.min.css');?>">
-    <link href="<?=base_url('/resources/css/bootstrap.min.css');?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap.min.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/lib/paginationjs/dist/pagination.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-table.min.css');?>">
-    <link rel="icon" type="image/jpeg" href="<?=base_url('/resources/img/logo.jpg');?>">
-    <!--link href="/css/bootstrap-theme.css" rel="stylesheet"-->
     <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-table-group-by.css');?>">
-    <script src="<?=base_url('/resources/lib/swalert/sweetalert.js');?>"></script>
     <link rel="stylesheet" href="<?=base_url('/resources/css/style.css');?>">
+    <script src="<?=base_url('/resources/lib/swalert/sweetalert.js');?>"></script>    
+    <link rel="icon" type="image/jpeg" href="<?=$logo = base_url('/resources/img/logo.png');?>">
     <title><?= esc($title) ?></title>
 </head>
 <body class="sidebar-mini">
+<div id="cssload-box"><div class="cssload-box-loading"></div></div>
     <div class="wrapper">
         <header class="header">
             <div class="box-logo">
@@ -28,21 +29,23 @@
                 </div>
                 <a href="/"><h2>Fast Inventory</h2></a>
             </div>
-            <!--nav class="nav">            
-            </nav-->
+            <div class="nav"> 
+                <div class="btn-search"><span class="fa fa-search"></span></div>  
+                <input type="text">         
+            </div>
             <nav>
-                <div class="button-user">
-                    <!--div class="btn-search"><span class="fa fa-search"></span></div-->
+                <div class="button-user">                    
                     <div class="user">
-                        <img src="<?=base_url('/resources/img/logo.jpg');?>" alt="">
+                        <img src="<?=$logo;?>" alt="">
                         <div>
-                            <small></small><br>
-                            <small><i class="fa fa-user" aria-hidden="true"></i></small>  
+                            <small><?=$controllerData['userData']->username;?></small><br>
+                            <small><i class="fa fa-user" aria-hidden="true"></i><?=$controllerData['userData']->username;?></small>  
                         </div>
                     </div>
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </div>
                 <div class="user-menu closeMenu">
+                    <?=$menu->showMenu('', 'TopRight')?>
                 </div>
             </nav>
             
@@ -58,7 +61,7 @@
                       <a href="#"><i class="fa fa-circle text-success" aria-hidden="true"></i> En linea</a>
                     </div>
                 </div>  
-                <?=$menu->showMenu('sidebar-menu')?>                               
+                <?=$menu->showMenu('sidebar-menu', 'Left')?>                               
             </section>
             <!--div class="lock-menu fa fa-unlock"></div-->
         </aside>
@@ -71,5 +74,4 @@
                 <li><?=$winname?></li>
             </ol>
             <div class="content active" data-id="1">
-                <div class="sidebar-hover-label"><a href=""></a></div>                        
-                <!--div id="cssload-box"><div class="cssload-box-loading"></div></!--div>
+                <div class="sidebar-hover-label"><a href=""></a></div>

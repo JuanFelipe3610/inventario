@@ -7,20 +7,20 @@
         private $menu;
         private $labels = array();
         private $data;
+        private $page;
 
-        public function __construct($menu) {
-            parent::__construct();
-            $this->data = $this->GetMenu($menu);
+        public function index($page)
+        {
+            $this->page = $page;
         }
 
-        private function CreateNavMenu($class = null) {
-            $labels = '';
-            foreach ($this->labels as $key => $value) {
-                $labels .= $value; 
+       private function CreateNavMenu($class = null) {
+            $label = '';
+            foreach ($this->labels as $value) {
+                $label .= $value; 
             }
-            $ul = '<ul class="'.$class.'">'.$labels.'</ul>';
-            $nav = '<nav>'.$ul.'</nav>';
-            return $nav;
+            $ul = '<ul class="'.$class.'">'.$label.'</ul>';
+            return '<nav>'.$ul.'</nav>';
         }
 
         private function CreateLabelMenu($class, $id, $url, $classIcon, $name, $submenu = null){
@@ -57,37 +57,24 @@
             }
             $DOM->appendChild($li);
             return $DOM->saveHTML();
-        }  
-
-        public function AppenedLabelAfter($class = '', $id = '', $url = '', $classIcon = '', $name = '', $submenu = '') {
-            $labels = array();
-            $labels[0] = $this->CreateLabelMenu($class, $id, $url, $classIcon, $name, $submenu);
-            foreach ($this->labels as $key => $value) {
-                $labels[$key+1] = $value;
-            }
-            $this->labels = $labels;
         }
         
-        public function GenerateMenu($menu = null) {
-            $data = $this->data;
-            $labels = array();
-            if ($data != 'error') {
-                foreach ($data as $obj) {
-                    $uri = str_replace('.php', '', basename($_SERVER['PHP_SELF']));
-                    ($uri == $obj->URL) ? $class = 'active' : $class = '';
+        private function GenerateMenu() {
+            $this->labels = [];
+            if ($this->data != 'error') {
+                foreach ($this->data as $obj) {
+                    ($this->page == $obj->URL) ? $class = 'active' : $class = '';
                     (isset($obj->SUBMENU)) ? $submenu = $obj->SUBMENU : $submenu = '';
                     $this->labels[] = $this->CreateLabelMenu($class, '', $obj->URL, $obj->ICON, $obj->NOMBRE, $submenu);
                 }
             }            
         }
 
-        public function ShowMenu($ulClass = null) {
+        public function ShowMenu($ulClass = null, $type = null) {            
+            $this->data = $this->wherePosition($type);
+            $this->GenerateMenu();   
             $this->menu = $this->CreateNavMenu($ulClass);
             echo $this->menu;
-        }
-
-        public function GetLabels() {
-            return $this->labels;
         }
     }  
 ?>
