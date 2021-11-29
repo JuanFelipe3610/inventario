@@ -18,7 +18,12 @@
     <title><?= esc($title) ?></title>
 </head>
 <body class="sidebar-mini">
-<div id="cssload-box"><div class="cssload-box-loading"></div></div>
+    <div id="cssload-box">
+        <div class="cssload-alert">
+            <div class="cssload-box-loading"></div>
+            <h3 style="align-self: center;">Cargando...</h3>
+        </div>        
+    </div>
     <div class="wrapper">
         <header class="header">
             <div class="box-logo">
