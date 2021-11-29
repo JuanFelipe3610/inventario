@@ -1,6 +1,6 @@
 <h3 class="page-header"><i class="fa fa-file-text-o"></i>Facturas</h3>
 <div class="box-basic-button-flex">
-  <button data-placement="top" data-toggle="modal" <?php //data-target="#addFactura" ?> class="basic-button green-button tooltips" type="button" data-original-title="Añadir" id="crearFactura"><span class="fa fa-plus-circle"></span></button>
+  <button data-placement="top" data-toggle="modal" data-target="#addFactura" class="basic-button green-button tooltips" type="button" data-original-title="Añadir" id="crearFactura"><span class="fa fa-plus-circle"></span></button>
   <button data-placement="top" data-toggle="modal" data-target="#papelera" class="basic-button tooltips" type="button" data-original-title="Papelera" id="facturasEliminadas"><span class="fa fa-trash-o"></span></button>
 </div>
 <div class="box-basic">

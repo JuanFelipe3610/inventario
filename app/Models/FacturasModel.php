@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class FacturasModel extends Model
 {
 
-    /*protected $table      = 'facturas';
+    protected $table      = 'facturas';
     protected $primaryKey = 'id_factura';
 
     protected $useAutoIncrement = true;
@@ -25,11 +25,6 @@ class FacturasModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
-
-    protected function initialize()
-    {
-        $this->allowedFields[] = 'middlename';
-    }*/
 
     public function readAll($estado)
     {
@@ -148,5 +143,10 @@ class FacturasModel extends Model
         if (isset($_GET["callback"])) {
             echo $_GET["callback"] . "(" . json_encode('cambiado') . ");";
         }
+    }
+
+    public function deleteFactura($id = null, bool $purge = false)
+    {
+        return $this->delete(['id' => $id]);
     }
 }

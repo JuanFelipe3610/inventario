@@ -28,6 +28,7 @@ class FacturasController extends PagesController
         foreach($r as $row) { 
             $date = date_create($row->created);
             $data[] = array(
+                'VER'       => '<span class="basic-button">Ver</span>',
                 'ID'        => $row->id_factura,
                 'CODIGO'    => $row->codigo_cliente,
                 'NOMBRE'    => $row->nombre,
@@ -52,6 +53,11 @@ class FacturasController extends PagesController
             $value = null;
         }
         return $this->FacturasModel->readAll($value);
+    }
+
+    public function delete(){
+        $id = $this->post('id');
+        echo json_encode($this->FacturasModel->deleteFactura($id));
     }
 
 }

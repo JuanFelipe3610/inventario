@@ -278,9 +278,9 @@ $(document).ready(function() {
         });       
     }
 
-    $(document).on('click', '#crearFactura', function() {
+    /*$(document).on('click', '#crearFactura', function() {
         createWindow()
-    });
+    });*/
 
     $(document).on("click", ".window li", function() {
         changeWindow($(this))

@@ -134,6 +134,7 @@ $(document).ready(function () {
                         formatter: function (value) {
                             let fristButton = {icon: 'icon_pencil', class: 'orange-button', text: 'Editar', id: '', dataId: value}
                             let buttons = [
+                                {icon: 'icon_search-2', class: '', text: 'Ver', id: 'view', dataId: value},
                                 {icon: 'icon_printer', class: '', text: 'Imprimir', id: 'print', dataId: value},
                                 {icon: 'fa fa-file-pdf-o', class: 'red-button', text: 'PDF', id: 'guardarPDF', dataId: value},
                                 {icon: 'fa fa-file-excel-o', class: 'green-button', text: 'Ecxel', id: '', dataId: value},
@@ -152,12 +153,12 @@ $(document).ready(function () {
     }
 
     $(document).on('mousedown', function(e) {
-        console.log(e.which)
         switch (e.which) {
             case 0:
                 rightClick(e)
                 break;
             case 1:
+                //rightClick(e)
                 $('#contexmenu').slideUp(100)
                 break;
             case 2:
@@ -171,10 +172,9 @@ $(document).ready(function () {
         }
     })
     
-    function rightClick(element) {
+    function rightClick(element) {        
         e = element.target
-        //console.log(element)
-        if (e.localName == 'td') {
+        if (e.localName == 'td' && element.which == 3) {
             if (!document.getElementById('contexmenu')) {
                 let content = document.createElement('ul')
                 let options = [
@@ -202,19 +202,26 @@ $(document).ready(function () {
                 }
                 $('body').append(content)
             }
+
+            $(document).on('click', '#contexmenu li', function(){
+                console.log('copy', element);
+                $(element).select();
+                navigator.clipboard.writeText(element.target.innerText)
+            });
+
             $('#contexmenu').fadeOut(100, function(){
                 $('#contexmenu').css({
                     'top': element.clientY,
                     'left': element.clientX 
                 })
             })
-            
+
             $('#contexmenu').slideDown(100)         
         }else{
-            $('#contexmenu').slideUp(100)
+            if (!$(e.parentElement).attr('id') == 'contexmenu') {
+                $('#contexmenu').slideUp(100)
+            }            
         }
-
-
     }
 
     $(document).on('click', '#crearFactura', function () {
@@ -531,10 +538,28 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#delete", function () {
-        let val = $(this).attr('data-id');
-        swal({
+        let id = $(this).attr('data-id');
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "Se eliminara la factura #" + id,
+            icon: 'warning',
+            showDenyButton: true,
+            confirmButtonText: 'Eliminar',
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                ajax(`${URL}delete`, {id}, function (response) {                    
+                    if(response) Swal.fire('Se ha eliminado la factura correctamente!', '', 'success');
+                    facturas();
+                });                
+            } else if (result.isDenied) {
+                Swal.fire('No se elimino la facrutra #'+ id, '', 'info')
+            }
+        })
+        /*swal.fire({
             title: "¿Estas seguro?",
-            text: "Se eliminara la factura: " + val,
+            text: "Se eliminara la factura: " + id,
             icon: "warning",
             buttons: {
                 cancel: {
@@ -556,15 +581,7 @@ $(document).ready(function () {
             customClass: 'basic-button'
         }).then((willDelete) => {
             if (willDelete) {
-                URL = URI() + "/controller/facturas.php";
-                ACTION = 7;
-                ARRAY = [];
-                ARRAY.push({
-                    id: val,
-                    estado: 0,
-                });
-                VALUES = JSON.stringify(ARRAY);
-                Ajax(URL, ACTION, VALUES, function (response) {
+                ajax(`${URL}delete`, {id}, function (response) {
                     swal({
                         text: "Se ha eliminado la factura correctamente!",
                         icon: "success",
@@ -578,20 +595,13 @@ $(document).ready(function () {
                             }
                         }
                     });
-                    URL = URI() + "/controller/facturas.php";
-                    ACTION = 3;
-                    ARRAY = [];
-                    ARRAY.push({
-                        estado: 0
-                    });
-                    VALUES = JSON.stringify(ARRAY);
-                    Ajax(URL, ACTION, VALUES, function (response) {
+                    ajax(`${URL}listFacturas`, { estado: 1}, function (response) {
                         $("#FacturasEliminadas").bootstrapTable("load", response);
                     });
                     facturas();
                 });
             }
-        });
+        });*/
     });
 
     $('#facturasEliminadas').on('click', function () {

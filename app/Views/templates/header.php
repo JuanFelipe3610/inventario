@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-table.min.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/css/bootstrap-table-group-by.css');?>">
     <link rel="stylesheet" href="<?=base_url('/resources/css/style.css');?>">
-    <script src="<?=base_url('/resources/lib/swalert/sweetalert.js');?>"></script>    
+    <script src="<?=base_url('/resources/lib/sweetalert2/sweetalert2.js');?>"></script>
     <link rel="icon" type="image/jpeg" href="<?=$logo = base_url('/resources/img/logo.png');?>">
     <title><?= esc($title) ?></title>
 </head>
