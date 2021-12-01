@@ -24,7 +24,7 @@
             <h3 style="align-self: center;">Cargando...</h3>
         </div>        
     </div>
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <header class="header">
             <div class="box-logo">
                 <div class="buttonMenu">
