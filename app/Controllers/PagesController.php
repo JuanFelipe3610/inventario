@@ -29,11 +29,11 @@ class PagesController extends BaseController
 				];
 			}
 			$controllerData['userData'] = (object)['username' => $this->session->username]; 
-			$this->loadPage($pageData, '<script type="module" src="/resources/js/components/' . $page . '.js" ></script>', $controllerData);
+			$this->loadPage($pageData, '<script src="/resources/js/common/' . $page . '.js" ></script>', $controllerData);
 		}else if($page != 'login'){		
 			header('Location: login');
 		}else{
-			$this->loadPage($pageData, '<script  type="module" src="/resources/js/components/' . $page . '.js" ></script>', $controllerData);
+			$this->loadPage($pageData, '<script src="/resources/js/common/' . $page . '.js" ></script>', $controllerData);
 		}
 	}
 

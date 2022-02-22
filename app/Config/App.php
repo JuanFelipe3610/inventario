@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'https://mssproyect.cor';
+	public $baseURL = 'http://fast.test';
 
 	/**
 	 * --------------------------------------------------------------------------
