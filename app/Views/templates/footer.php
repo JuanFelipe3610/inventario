@@ -7,7 +7,7 @@
     <script src="/resources/js/scripts.js"></script>
     <script src="/resources/js/bootstrap-table.min.js"></script>
     <script src="/resources/js/bootstrap-table-group-by.js"></script>
-    <?=$script?>
+    <script src="dist/main.js" charset="utf-8"></script>
     <em>&copy; 2021</em>
 </body>
 </html>
